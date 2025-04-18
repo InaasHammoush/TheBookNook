@@ -3,11 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
