@@ -20,6 +20,7 @@ class ThreadController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'genre_id' => 'required|exists:genres,id',
             'book_info' => 'nullable|string',
         ]);
 
@@ -27,9 +28,10 @@ class ThreadController extends Controller
 
         $thread = Thread::create([
             'title' => $request->title,
-            'content' => $request->content,
+            'body' => $request->content,
             'user_id' => auth()->id(),
             'book_title' => $book['title'] ?? null,
+            'genre_id' => $request->genre_id,
             'book_authors' => $book['authors'] ?? null,
             'book_api_id' => $book['id'] ?? null,
         ]);
