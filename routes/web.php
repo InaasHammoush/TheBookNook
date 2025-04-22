@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 
 
@@ -25,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/threads/create', [ThreadController::class, 'create'])->name('threads.create');
     Route::post('/threads', [ThreadController::class, 'store'])->name('threads.store');
 });
+
+Route::get('/search-threads', [SearchController::class, 'index'])->name('search.threads');
 
 Route::get('/threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
 

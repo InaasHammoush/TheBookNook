@@ -1,7 +1,14 @@
 <x-app-layout>
     <header class="flex items-center px-6 py-4 bg-white shadow">
         <h1 class="text-xl font-bold">Book Forum</h1>
-    
+
+
+
+        <div class="flex-1 mx-6 flex justify-center">
+            <x-search />
+        </div>
+
+
         @auth
             <a href="{{ route('threads.create') }}"
                class="ml-auto bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" style="right: 10px;">
