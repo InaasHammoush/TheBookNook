@@ -1,12 +1,33 @@
 <x-app-layout>
-    <h1>{{ $thread->title }}</h1>
-    <p>{{ $thread->body }}</p>
-    <p><strong>Posted by:</strong> {{ $thread->user->name }}</p>
+    <div class="max-w-3xl mx-auto py-12">
+        <div class="mb-6 border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
+            <h2 class="text-2xl font-bold mb-6">{{ $thread->title }}</h2>
+            <p class="text-gray-700 text-lg mb-2">{{ $thread->body }}</p>
 
-    <h2>Comments</h2>
-    @foreach ($comments as $comment)
-        <div>
-            <strong>{{ $comment->user->name }}</strong>: {{ $comment->body }}
+            <div class="text-sm text-gray-500">
+                <span class="font-semibold">{{ $thread->user->name }}</span>
+                • {{ $thread->created_at->format('d.m.Y H:i') }}
+            </div>
         </div>
-    @endforeach
+
+        <div class="border border-gray-200 rounded-lg p-6 bg-white shadow-sm mb-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Comments</h3>
+
+            @forelse ($comments as $comment)
+                <div class="mb-4 border border-gray-100 rounded-md p-3 bg-gray-50">
+                    <p class="text-gray-800">{{ $comment->body }}</p>
+                    <div class="text-sm text-gray-500 mt-2">
+                        — {{ $comment->user->name }}, {{ $comment->created_at->format('d.m.Y H:i') }}
+                    </div>
+                </div>
+            @empty
+                <p class="text-gray-500">No comments yet</p>
+            @endforelse
+        </div>
+
+        <a href="{{ route('home') }}" class="text-blue-600 hover:underline">
+            ← Back to Home
+        </a>
+
+    </div>
 </x-app-layout>
