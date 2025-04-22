@@ -29,5 +29,19 @@
             ← Back to Home
         </a>
 
+        @auth
+        <form action="{{ route('comments.store', $thread->id) }}" method="POST" class="mt-6 space-y-4">
+            @csrf
+            <textarea name="body" rows="4" class="w-full border rounded p-2 mx-auto" placeholder="Write your comment..." required></textarea>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Post Comment
+            </button>
+        </form>
+        @else
+            <p class="mt-4 text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-600 hover:underline">log in</a> to comment.</p>
+        @endauth
     </div>
+
+
+
 </x-app-layout>
