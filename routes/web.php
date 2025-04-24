@@ -30,6 +30,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/search-threads', [SearchController::class, 'index'])->name('search.threads');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/threads/{thread}/edit', [ThreadController::class, 'edit'])->name('threads.edit');
+    Route::put('/threads/{thread}', [ThreadController::class, 'update'])->name('threads.update');
+    Route::delete('/threads/{thread}', [ThreadController::class, 'destroy'])->name('threads.destroy');
+});
+
 Route::get('/threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
 Route::post('/threads/{thread}/comments', [CommentController::class, 'store'])->name('comments.store');
 

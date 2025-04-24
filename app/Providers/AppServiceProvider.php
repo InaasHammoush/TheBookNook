@@ -21,4 +21,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    protected $policies = [
+        \App\Models\Thread::class => \App\Policies\ThreadPolicy::class,
+    ];
+
 }
