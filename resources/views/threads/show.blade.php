@@ -1,5 +1,7 @@
 <x-app-layout>
     <div class="max-w-3xl mx-auto py-12">
+
+        <!-- Thread section -->
         <div class="mb-6 border border-gray-200 rounded-lg p-6 bg-white shadow-sm ">
             <div class="flex justify-between items-start">
             <h2 class="text-2xl font-bold mb-4 basis-1/2" style="display: inline;">{{ $thread->title }}</h2>
@@ -28,7 +30,7 @@
                     </div>
                 @endcan
             </div>
-            <p class="text-gray-700 text-lg mb-2">{{ $thread->body }}</p>
+            <p class="text-gray-700 text-lg mb-2 break-words">{!! nl2br(e($thread->body)) !!}</p>
 
             <div class="text-sm text-gray-500">
                 <span class="font-semibold">{{ $thread->user->name }}</span>
@@ -37,14 +39,13 @@
         </div>
 
 
-
-
+        <!-- Comment section -->
         <div class="border border-gray-200 rounded-lg p-6 bg-white shadow-sm mb-8">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Comments</h3>
 
             @forelse ($comments as $comment)
                 <div class="mb-4 border border-gray-100 rounded-md p-3 bg-gray-50">
-                    <p class="text-gray-800">{{ $comment->body }}</p>
+                    <p class="text-gray-800">{{!! nl2br(e($comment->body)) !!}</p>
                     <div class="text-sm text-gray-500 mt-2">
                         — {{ $comment->user->name }}, {{ $comment->created_at->format('d.m.Y H:i') }}
                     </div>
