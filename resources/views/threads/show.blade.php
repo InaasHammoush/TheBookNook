@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-3xl mx-auto py-12">
-        <div class="mb-6 border border-gray-200 rounded-lg p-6 pt-[90px] bg-white shadow-sm ">
+        <div class="mb-6 border border-gray-200 rounded-lg p-6 bg-white shadow-sm ">
             <div class="flex justify-between items-start">
             <h2 class="text-2xl font-bold mb-4 basis-1/2" style="display: inline;">{{ $thread->title }}</h2>
 
