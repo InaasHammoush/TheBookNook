@@ -4,10 +4,10 @@
         <!-- Thread section -->
         <div class="mb-6 border border-gray-200 rounded-lg p-6 bg-white shadow-sm ">
             <div class="flex justify-between items-start">
-            <h2 class="text-2xl font-bold mb-4 basis-1/2" style="display: inline;">{{ $thread->title }}</h2>
+            <h2 class="text-2xl font-bold mb-4 basis-2/3" style="display: inline;">{{ $thread->title }}</h2>
 
                 @can('update', $thread)
-                        <div class="flex gap-2 basis-1/2 justify-end" >
+                        <div class="flex gap-2 basis-1/3 justify-end" >
 
                         <form action="{{ route('threads.edit', $thread) }}" method="GET" class="inline m-0 p-0">
                             <button type="submit"
