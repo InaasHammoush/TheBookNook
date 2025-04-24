@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/threads/{thread}/edit', [ThreadController::class, 'edit'])->name('threads.edit');
     Route::put('/threads/{thread}', [ThreadController::class, 'update'])->name('threads.update');
     Route::delete('/threads/{thread}', [ThreadController::class, 'destroy'])->name('threads.destroy');
+
+    Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 Route::get('/threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
