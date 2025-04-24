@@ -43,9 +43,35 @@
         <div class="border border-gray-200 rounded-lg p-6 bg-white shadow-sm mb-8">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Comments</h3>
 
+            <!-- Comment body including edit and delete -->
             @forelse ($comments as $comment)
-                <div class="mb-4 border border-gray-100 rounded-md p-3 bg-gray-50">
-                    <p class="text-gray-800">{{!! nl2br(e($comment->body)) !!}</p>
+                <div class="mb-4 border border-gray-100 rounded-md p-4 bg-gray-50">
+                    <div class="flex justify-between items-start">
+                        <p class="text-gray-800 w-full">{!! nl2br(e($comment->body)) !!}</p>
+
+                        @can('update', $comment)
+                            <div class="flex gap-2 justify-end ml-4">
+                                <form action="{{ route('comments.edit', $comment) }}" method="GET" class="inline m-0 p-0">
+                                    <button type="submit"
+                                            class="text-sm text-gray-600 hover:underline bg-transparent border-none p-0 m-0 leading-tight cursor-pointer align-baseline">
+                                        Edit
+                                    </button>
+                                </form>
+
+                                <form action="{{ route('comments.destroy', $comment) }}" method="POST"
+                                      onsubmit="return confirm('Are you sure you want to delete this comment?');"
+                                      class="inline m-0 p-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            class="text-sm text-gray-600 hover:underline bg-transparent border-none p-0 m-0 leading-tight cursor-pointer align-baseline">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        @endcan
+                    </div>
+
                     <div class="text-sm text-gray-500 mt-2">
                         — {{ $comment->user->name }}, {{ $comment->created_at->format('d.m.Y H:i') }}
                     </div>
@@ -53,6 +79,7 @@
             @empty
                 <p class="text-gray-500">No comments yet</p>
             @endforelse
+
         </div>
 
 
