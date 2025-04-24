@@ -51,7 +51,7 @@ class ThreadController extends Controller
     public function edit(Thread $thread)
     {
         $this->authorize('update', $thread);
-        return view('threads.edit', compact('thread'));
+        return view('threads.edit-threads', compact('thread'));
     }
 
     public function update(Request $request, Thread $thread)
