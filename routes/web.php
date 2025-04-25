@@ -11,8 +11,13 @@ use App\Http\Controllers\SearchController;
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    if (auth()->user()->role === 'admin') {
+        return view('dashboard.admin');
+    }
+    $threads = auth()->user()->threads()->latest()->paginate(5);
+
+    return view('dashboard.user', compact('threads'));
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
