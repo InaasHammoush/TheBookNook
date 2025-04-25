@@ -48,12 +48,11 @@
                     </div>
                 @endcan
             </div>
-        <p class="text-gray-700 text-lg mb-2 break-words">{!! nl2br(e($thread->body)) !!}</p>
+        <p class="text-gray-700 text-lg mb-2 break-words">{!! nl2br(e($thread->body)) !!} </p>
         <div class="text-sm text-gray-500">
-            <span class="font-semibold">{{ $thread->user->name }}</span>
+            <span class="font-semibold">{{ $thread->user->name }} • {{ $thread->created_at->format('d.m.Y H:i') }}</span>
              <p class="text-sm text-gray-500">
-                Genre: {{ $thread->genre->name ?? 'Unknown' }} •
-                by {{ $thread->user->name ?? 'Anonymous' }} • {{ $thread->created_at->format('d.m.Y H:i') }}
+                Genre: {{ $thread->genre->name ?? 'Unknown' }}
              @if($thread->book_authors)
                 | Book by {{ $thread->book_authors }}
              @endif
