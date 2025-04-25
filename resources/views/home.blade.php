@@ -68,8 +68,11 @@
                                         {{ $thread->title }}
                                     </a>
                                     <p class="text-sm text-gray-500">
-                                        Genre: {{ $thread->genre->name ?? 'Unknown' }} |
+                                        Genre: {{ $thread->genre->name ?? 'Unknown' }} •
                                         by {{ $thread->user->name ?? 'Anonymous' }}
+                                        @if($thread->book_authors)
+                                                | Book by {{ $thread->book_authors }}
+                                        @endif
                                     </p>
                                     <p class="mt-1 text-gray-700">
                                         {{ \Illuminate\Support\Str::limit($thread->body, 100) }}

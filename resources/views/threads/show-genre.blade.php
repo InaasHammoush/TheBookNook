@@ -51,6 +51,9 @@
                                         </a>
                                         <p class="text-sm text-gray-500 mb-1">
                                             by {{ $thread->user->name ?? 'Anonymous' }}
+                                            @if($thread->book_authors)
+                                                | Book by {{ $thread->book_authors }}
+                                            @endif
                                         </p>
                                         <p class="text-gray-700">
                                             {{ \Illuminate\Support\Str::limit($thread->body, 100) }}

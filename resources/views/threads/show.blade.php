@@ -52,6 +52,9 @@
         <div class="text-sm text-gray-500">
             <span class="font-semibold">{{ $thread->user->name }}</span>
              • {{ $thread->created_at->format('d.m.Y H:i') }}
+             @if($thread->book_authors)
+                | Book by {{ $thread->book_authors }}
+             @endif
              </div>
         </div>
     </div>
