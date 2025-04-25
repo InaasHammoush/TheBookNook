@@ -5,7 +5,9 @@
 
                 <!-- Sidebar with Genres -->
                 <div class="w-1/4 bg-white rounded-lg shadow p-4">
-                    <h3 class="text-lg font-semibold mb-4">Genres</h3>
+                    <a href="{{ route('home') }}" class="text-lg font-semibold mb-4 block hover:underline text-gray-800">
+                        Genres
+                    </a>
                     <ul class="space-y-2">
                         @foreach($allGenres as $g)
                             <li>
@@ -26,15 +28,17 @@
                         <ul class="space-y-6">
                             @foreach($genre->threads as $thread)
                                 <li class="flex items-start space-x-6 border-b pb-4">
-                                    <!-- Buchcover-Platzhalter -->
+
+                                    <!-- Buchcover  -->
                                     @if($thread->cover_image)
-                                    <div class="w-24 h-36 flex-shrink-0 rounded shadow-sm overflow-hidden">
-                                        <img src="{{ $thread->cover_image }}"
-                                             alt="Cover of {{ $thread->title }}"
-                                             class="w-full h-full object-cover"/>
-                                    </div>
+                                        <div style="width: 64px; height: 96px; overflow: hidden; border-radius: 0.375rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" class="flex-shrink-0 bg-white">
+                                            <img src="{{ $thread->cover_image }}"
+                                                 alt="Cover of {{ $thread->title }}"
+                                                 style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                        </div>
                                     @else
-                                        <div class="w-24 h-36 bg-gray-200 rounded shadow-sm flex-shrink-0 flex items-center justify-center text-sm text-gray-500">
+                                        <div style="width: 64px; height: 96px; background-color: #e5e7eb; border-radius: 0.375rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
+                                             class="flex-shrink-0 flex items-center justify-center text-sm text-gray-500">
                                             No Cover
                                         </div>
                                     @endif

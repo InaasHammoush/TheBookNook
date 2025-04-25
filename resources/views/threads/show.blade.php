@@ -3,8 +3,26 @@
 
         <!-- Thread section -->
         <div class="mb-6 border border-gray-200 rounded-lg p-6 bg-white shadow-sm ">
-            <div class="flex justify-between items-start">
-            <h2 class="text-2xl font-bold mb-4 basis-2/3" style="display: inline;">{{ $thread->title }}</h2>
+            <div class="flex items-start space-x-6 mb-6">
+
+                <!-- Bookcover in Thread Overview after Creation-->
+                @if($thread->cover_image)
+                    <div style="width: 64px; height: 96px; overflow: hidden; border-radius: 0.375rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" class="flex-shrink-0 bg-white">
+                        <img src="{{ $thread->cover_image }}"
+                             alt="Cover of {{ $thread->title }}"
+                             style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                @else
+                    <div style="width: 64px; height: 96px; background-color: #e5e7eb; border-radius: 0.375rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
+                         class="flex-shrink-0 flex items-center justify-center text-sm text-gray-500">
+                        No Cover
+                    </div>
+                @endif
+
+                <!-- Thread info -->
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h2 class="text-2xl font-bold mb-4 basis-2/3" style="display: inline;">{{ $thread->title }}</h2>
 
                 @can('update', $thread)
                         <div class="flex gap-2 basis-1/3 justify-end" >
@@ -30,14 +48,14 @@
                     </div>
                 @endcan
             </div>
-            <p class="text-gray-700 text-lg mb-2 break-words">{!! nl2br(e($thread->body)) !!}</p>
-
-            <div class="text-sm text-gray-500">
-                <span class="font-semibold">{{ $thread->user->name }}</span>
-                • {{ $thread->created_at->format('d.m.Y H:i') }}
-            </div>
+        <p class="text-gray-700 text-lg mb-2 break-words">{!! nl2br(e($thread->body)) !!}</p>
+        <div class="text-sm text-gray-500">
+            <span class="font-semibold">{{ $thread->user->name }}</span>
+             • {{ $thread->created_at->format('d.m.Y H:i') }}
+             </div>
         </div>
-
+    </div>
+</div>
 
         <!-- Comment section -->
         <div class="border border-gray-200 rounded-lg p-6 bg-white shadow-sm mb-8">
