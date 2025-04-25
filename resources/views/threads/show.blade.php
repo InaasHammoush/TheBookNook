@@ -6,20 +6,20 @@
             <div class="flex justify-between items-start">
                 <h2 class="text-2xl font-bold basis-2/3" style="display: inline;">{{ $thread->title }}</h2>
 
-                @can('update', $thread)
-                        <div class="flex gap-2 basis-1/3 justify-end" >
-
+                <div class="flex gap-2 basis-1/3 justify-end" >
+                    @can('update', $thread)
                         <form action="{{ route('threads.edit', $thread) }}" method="GET" class="inline m-0 p-0">
                             <button type="submit"
                                     class="text-sm text-gray-600 hover:underline bg-transparent border-none p-0 m-0 leading-tight cursor-pointer align-baseline">
                                 Edit
                             </button>
                         </form>
+                    @endcan
 
-
+                    @can('delete', $thread)
                         <form action="{{ route('threads.destroy', $thread) }}" method="POST"
-                              onsubmit="return confirm('Are you sure you want to delete this thread?');"
-                              class="inline m-0 p-0">
+                            onsubmit="return confirm('Are you sure you want to delete this thread?');"
+                            class="inline m-0 p-0">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
@@ -27,8 +27,8 @@
                                 Delete
                             </button>
                         </form>
-                    </div>
-                @endcan
+                    @endcan
+                </div>
             </div>
             
             @auth
@@ -64,19 +64,20 @@
                 <div class="mb-4 border border-gray-100 rounded-md p-4 bg-gray-50">
                     <div class="flex justify-between items-start">
                         <p class="text-gray-800 w-full">{!! nl2br(e($comment->body)) !!}</p>
-
-                        @can('update', $comment)
-                            <div class="flex gap-2 justify-end ml-4">
+                        <div class="flex gap-2 justify-end ml-4">
+                            @can('update', $comment)
                                 <form action="{{ route('comments.edit', $comment) }}" method="GET" class="inline m-0 p-0">
                                     <button type="submit"
                                             class="text-sm text-gray-600 hover:underline bg-transparent border-none p-0 m-0 leading-tight cursor-pointer align-baseline">
                                         Edit
                                     </button>
                                 </form>
+                            @endcan
 
+                            @can('delete', $comment)
                                 <form action="{{ route('comments.destroy', $comment) }}" method="POST"
-                                      onsubmit="return confirm('Are you sure you want to delete this comment?');"
-                                      class="inline m-0 p-0">
+                                    onsubmit="return confirm('Are you sure you want to delete this comment?');"
+                                    class="inline m-0 p-0">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
@@ -84,8 +85,8 @@
                                         Delete
                                     </button>
                                 </form>
-                            </div>
-                        @endcan
+                            @endcan
+                        </div>
                     </div>
 
                     <div class="text-sm text-gray-500 mt-2">

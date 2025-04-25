@@ -13,7 +13,7 @@ use App\Http\Controllers\SearchController;
 
 
 Route::get('/dashboard', function () {
-    if (auth()->user()->role === 'admin') {
+    if (auth()->user()->isAdmin()) {
         return app(DashboardController::class)->adminDashboard();
     } else {
         return app(DashboardController::class)->userDashboard();

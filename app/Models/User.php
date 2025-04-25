@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -59,6 +60,11 @@ class User extends Authenticatable
     public function bookmarkedThreads()
     {
         return $this->belongsToMany(Thread::class, 'bookmarks')->withTimestamps();
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
     }
 
 }
