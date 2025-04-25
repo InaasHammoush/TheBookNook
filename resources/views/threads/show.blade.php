@@ -51,10 +51,13 @@
         <p class="text-gray-700 text-lg mb-2 break-words">{!! nl2br(e($thread->body)) !!}</p>
         <div class="text-sm text-gray-500">
             <span class="font-semibold">{{ $thread->user->name }}</span>
-             • {{ $thread->created_at->format('d.m.Y H:i') }}
+             <p class="text-sm text-gray-500">
+                Genre: {{ $thread->genre->name ?? 'Unknown' }} •
+                by {{ $thread->user->name ?? 'Anonymous' }} • {{ $thread->created_at->format('d.m.Y H:i') }}
              @if($thread->book_authors)
                 | Book by {{ $thread->book_authors }}
              @endif
+             </p>
              </div>
         </div>
     </div>
