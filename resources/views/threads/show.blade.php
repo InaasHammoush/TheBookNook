@@ -4,7 +4,7 @@
         <!-- Thread section -->
         <div class="mb-6 border border-gray-200 rounded-lg p-6 bg-white shadow-sm ">
             <div class="flex justify-between items-start">
-            <h2 class="text-2xl font-bold mb-4 basis-2/3" style="display: inline;">{{ $thread->title }}</h2>
+                <h2 class="text-2xl font-bold basis-2/3" style="display: inline;">{{ $thread->title }}</h2>
 
                 @can('update', $thread)
                         <div class="flex gap-2 basis-1/3 justify-end" >
@@ -30,7 +30,23 @@
                     </div>
                 @endcan
             </div>
-            <p class="text-gray-700 text-lg mb-2 break-words">{!! nl2br(e($thread->body)) !!}</p>
+            
+            @auth
+                @if(auth()->user()->bookmarkedThreads->contains($thread->id))
+                    <form action="{{ route('threads.unbookmark', $thread) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-blue-500 mb-2">📑 Remove Bookmark</button>
+                    </form>
+                @else
+                    <form action="{{ route('threads.bookmark', $thread) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="text-blue-500 mb-2">📑 Bookmark Thread</button>
+                    </form>
+                @endif
+            @endauth
+        
+            <p class="text-gray-700 text-lg mt-2 mb-2 break-words">{!! nl2br(e($thread->body)) !!}</p>
 
             <div class="text-sm text-gray-500">
                 <span class="font-semibold">{{ $thread->user->name }}</span>

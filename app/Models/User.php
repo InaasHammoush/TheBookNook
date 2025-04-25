@@ -56,4 +56,9 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function bookmarkedThreads()
+    {
+        return $this->belongsToMany(Thread::class, 'bookmarks')->withTimestamps();
+    }
+
 }
