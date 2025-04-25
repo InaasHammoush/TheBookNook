@@ -6,11 +6,46 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 mb-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <p>Welcome, {{ auth()->user()->name }}! You are logged in as an admin.</p>
-                <p>Admin features will be added here soon.</p>
+
+                <div class="mb-4">
+                    <h1 class="text-lg font-medium ">Welcome, {{ auth()->user()->name }}! You are logged in as an admin.</h1>
+                </div>
+
+                <p class="text-lg">Total Users: {{ $userCount }}</p>
+            
+                <p class="text-lg">Total Threads: {{ $threadCount }}</p>
             </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-8">
+            @if($threads->count())
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-4">Threads Created by You</h3>
+                    <ul class="space-y-4">
+                        @foreach($threads as $thread)
+                            <li class="border-b pb-2">
+                                <a href="{{ route('threads.show', $thread->id) }}" class="text-blue-600 hover:underline">
+                                    {{ $thread->title }}
+                                </a>
+                                <p class="text-sm text-gray-500">
+                                    Created at: {{ $thread->created_at->format('M d, Y') }}
+                                </p>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="mt-4">
+                        {{ $threads->links() }}
+                    </div>
+                </div>
+            @else
+                <div class="bg-white shadow-sm sm:rounded-lg p-6">
+                    <p>You haven’t posted any threads yet.</p>
+                    <a href="{{ route('threads.create') }}" class="text-blue-600 hover:underline">Create your first thread</a>
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

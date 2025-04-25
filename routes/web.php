@@ -6,6 +6,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 
@@ -13,11 +14,10 @@ use App\Http\Controllers\SearchController;
 
 Route::get('/dashboard', function () {
     if (auth()->user()->role === 'admin') {
-        return view('dashboard.admin');
+        return app(DashboardController::class)->adminDashboard();
+    } else {
+        return app(DashboardController::class)->userDashboard();
     }
-    $threads = auth()->user()->threads()->latest()->paginate(5);
-
-    return view('dashboard.user', compact('threads'));
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
