@@ -74,7 +74,8 @@
                                 bookInfoInput.value = JSON.stringify({
                                     id: book.id,
                                     title: book.volumeInfo.title,
-                                    authors: book.volumeInfo.authors || []
+                                    authors: book.volumeInfo.authors || [],
+                                    cover: book.volumeInfo.imageLinks?.thumbnail || null
                                 });
                                 document.getElementById('book-search').value = book.volumeInfo.title;
                                 resultsList.classList.add('hidden');
