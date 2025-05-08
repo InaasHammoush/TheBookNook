@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
     }
 })->middleware(['auth'])->name('dashboard');
 
-Route::middleware(['auth'])->prefix('')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('')->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
     Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/admin/users/{user}/promote', [UserController::class, 'promote'])->name('users.promote');
