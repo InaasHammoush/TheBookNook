@@ -23,4 +23,9 @@ class Thread extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function bookmarkedBy()
+    {
+        return $this->belongsToMany(User::class, 'bookmarks')->withTimestamps();
+    }
+
 }

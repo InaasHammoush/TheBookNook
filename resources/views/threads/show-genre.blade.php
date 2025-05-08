@@ -49,11 +49,15 @@
                                            class="text-xl font-medium text-blue-700 hover:underline block mb-1">
                                             {{ $thread->title }}
                                         </a>
-                                        <p class="text-sm text-gray-500 mb-1">
-                                            by {{ $thread->user->name ?? 'Anonymous' }}
-                                            @if($thread->book_authors)
-                                                | Book by {{ $thread->book_authors }}
+                                        <p class="text-sm text-gray-500">
+                                            by {{ $thread->user->name ?? 'Anonymous' }} 
+                                            @if ($thread->book_title)
+                                                | "{{ $thread->book_title }}"
                                             @endif
+                                            @if($thread->book_authors)
+                                                    by {{ $thread->book_authors }}
+                                            @endif
+                                            • Genre: {{ $thread->genre->name ?? 'Unknown' }}
                                         </p>
                                         <p class="text-gray-700">
                                             {{ \Illuminate\Support\Str::limit($thread->body, 100) }}
