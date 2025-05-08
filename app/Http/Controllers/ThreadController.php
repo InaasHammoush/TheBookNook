@@ -37,6 +37,7 @@ class ThreadController extends Controller
             'genre_id' => $request->genre_id,
             'book_authors' => isset($book['authors']) ? implode(', ', $book['authors']) : null,
             'book_api_id' => $book['id'] ?? null,
+            'cover_image' => $book['cover'] ?? null,
         ]);
 
         return redirect()->route('threads.show', $thread);

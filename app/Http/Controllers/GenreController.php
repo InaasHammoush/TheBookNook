@@ -14,9 +14,19 @@ class GenreController extends Controller
         return view('genres.index', compact('genres'));
     }
 
+
     public function show(Genre $genre)
     {
-        $threads = $genre->threads()->latest()->get();
-        return view('genres.show', compact('genre', 'threads'));
+        $genre->load(['threads' => function ($query) {
+            $query->latest()->with('user');
+        }]);
+
+        $allGenres = \App\Models\Genre::all();
+
+        return view('threads.show-genre', [
+            'genre' => $genre,
+            'allGenres' => $allGenres,
+        ]);
     }
+
 }
