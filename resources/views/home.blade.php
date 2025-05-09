@@ -1,21 +1,4 @@
 <x-app-layout>
-    <header class="flex items-center px-6 py-4 bg-white shadow">
-        <h1 class="text-xl font-bold">Book Forum</h1>
-
-
-
-        <div class="flex-1 mx-6 flex justify-center">
-            <x-search />
-        </div>
-
-
-        @auth
-            <a href="{{ route('threads.create') }}"
-               class="ml-auto bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" style="right: 10px;">
-                + New Thread
-            </a>
-        @endauth
-    </header>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +11,7 @@
                             @foreach($genres as $genre)
                                 <li>
                                     <a href="{{ route('genres.show', $genre->id) }}"
-                                       class="text-blue-600 hover:underline block">
+                                       class="block px-3 py-2 rounded-md text-gray-700 hover:bg-emerald-100 hover:text-emerald-700 transition">
                                         {{ $genre->name }}
                                     </a>
                                 </li>
@@ -42,10 +25,11 @@
                 <!-- Main: Threads -->
                 <div class="flex-1 bg-white rounded-lg shadow p-4">
                     <h3 class="text-lg font-semibold mb-4">Latest Threads</h3>
+
                     @if($threads->count())
-                        <ul class="space-y-4">
+                        <div class="grid gap-4">
                             @foreach($threads as $thread)
-                                <li class="border-b pb-2">
+                                <div class="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
                                     <a href="{{ route('threads.show', $thread->id) }}"
                                        class="text-xl text-blue-700 hover:underline font-medium">
                                         {{ $thread->title }}
@@ -57,9 +41,9 @@
                                     <p class="mt-1 text-gray-700">
                                         {{ \Illuminate\Support\Str::limit($thread->body, 100) }}
                                     </p>
-                                </li>
+                                </div>
                             @endforeach
-                        </ul>
+                        </div>
                     @else
                         <p>No threads found.</p>
                     @endif
