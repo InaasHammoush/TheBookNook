@@ -19,16 +19,16 @@ Route::get('/dashboard', function () {
     } else {
         return app(DashboardController::class)->userDashboard();
     }
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'admin'])->prefix('')->group(function () {
+Route::middleware(['auth', 'verified', 'admin'])->prefix('')->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
     Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/admin/users/{user}/promote', [UserController::class, 'promote'])->name('users.promote');
     Route::post('/admin/users/{user}/demote', [UserController::class,'demote'])->name('users.demote');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware([ 'auth', 'verified' ])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -37,14 +37,14 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/genres/{genre}', [GenreController::class, 'show'])->name('genres.show');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/threads/create', [ThreadController::class, 'create'])->name('threads.create');
     Route::post('/threads', [ThreadController::class, 'store'])->name('threads.store');
 });
 
 Route::get('/search-threads', [SearchController::class, 'index'])->name('search.threads');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/threads/{thread}/edit', [ThreadController::class, 'edit'])->name('threads.edit');
     Route::put('/threads/{thread}', [ThreadController::class, 'update'])->name('threads.update');
     Route::delete('/threads/{thread}', [ThreadController::class, 'destroy'])->name('threads.destroy');
