@@ -1,44 +1,49 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex space-x-6">
+            <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
 
                 <!-- Sidebar with Genres -->
-                <div class="w-1/4 bg-white rounded-lg shadow p-4">
+                <aside class="w-full md:w-1/4 bg-white rounded-xl shadow p-4">
                     <a href="{{ route('home') }}" class="text-lg font-semibold mb-4 block hover:underline text-gray-800">
-                        Genres
+                        ← All Threads
                     </a>
                     <ul class="space-y-2">
                         @foreach($allGenres as $g)
                             <li>
                                 <a href="{{ route('genres.show', $g->id) }}"
-                                   class="block {{ $g->id === $genre->id ? 'font-bold text-blue-700' : 'text-blue-600 hover:underline' }}">
-                                    {{ $g->name }}
+                                   class="block px-3 py-2 rounded-md transition
+                                   {{ $g->id === $genre->id
+                                   ? 'bg-emerald-200 text-emerald-800 font-semibold'
+                                   : 'text-gray-700 hover:bg-emerald-100 hover:text-emerald-700' }}">
+                                   {{ $g->name }}
                                 </a>
                             </li>
                         @endforeach
                     </ul>
-                </div>
+                </aside>
 
                 <!-- show threads in selected genre -->
-                <div class="flex-1 bg-white rounded-lg shadow p-4">
-                    <h3 class="text-lg font-semibold mb-4">{{ $genre->name }} Threads</h3>
+                <section class="flex-1 bg-white rounded-xl shadow p-4">
+                    <h3 class="text-lg font-semibold mb-4">
+                        Threads in <span class="text-emerald-700">{{ $genre->name }} Threads</h3>
 
                     @if($genre->threads->count())
-                        <ul class="space-y-6">
+                        <div class="grid gap-4">
                             @foreach($genre->threads as $thread)
-                                <li class="flex items-start space-x-6 border-b pb-4">
+                                <div class="flex items-start space-x-6 border-b pb-4">
 
                                     <!-- Buchcover  -->
                                     @if($thread->cover_image)
-                                        <div style="width: 64px; height: 96px; overflow: hidden; border-radius: 0.375rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" class="flex-shrink-0 bg-white">
+                                        <div class="flex-shrink-0 bg-white rounded-md shadow-sm overflow-hidden"
+                                            style="width: 64px; height: 96px;">
                                             <img src="{{ $thread->cover_image }}"
                                                  alt="Cover of {{ $thread->title }}"
-                                                 style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                                 class="w-full h-full object-cover block" />
                                         </div>
                                     @else
-                                        <div style="width: 64px; height: 96px; background-color: #e5e7eb; border-radius: 0.375rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
-                                             class="flex-shrink-0 flex items-center justify-center text-sm text-gray-500">
+                                        <div class="flex-shrink-0 flex items-center justify-center text-sm text-gray-500 rounded-md shadow-sm bg-gray-200"
+                                            style="width: 64px; height: 96px;">
                                             No Cover
                                         </div>
                                     @endif
@@ -50,7 +55,7 @@
                                             {{ $thread->title }}
                                         </a>
                                         <p class="text-sm text-gray-500">
-                                            by {{ $thread->user->name ?? 'Anonymous' }} 
+                                            by {{ $thread->user->name ?? 'Anonymous' }}
                                             @if ($thread->book_title)
                                                 | "{{ $thread->book_title }}"
                                             @endif
@@ -63,14 +68,13 @@
                                             {{ \Illuminate\Support\Str::limit($thread->body, 100) }}
                                         </p>
                                     </div>
-                                </li>
+                                </div>
                             @endforeach
-                        </ul>
+                        </div>
                     @else
-                        <p>No threads found in this genre.</p>
+                        <p class="text-gray-500">No threads found in this genre.</p>
                     @endif
-                </div>
-
+                </section>
             </div>
         </div>
     </div>

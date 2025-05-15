@@ -45,7 +45,7 @@
                 <textarea name="content" rows="6" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-200"></textarea>
             </div>
 
-            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Create Thread</button>
+            <button type="submit" class="bg-emerald-500 text-white px-4 py-2 rounded hover:bg-emerald-700">Create Thread</button>
         </form>
     </div>
 

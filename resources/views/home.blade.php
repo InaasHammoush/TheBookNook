@@ -3,7 +3,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex space-x-6">
-                <!-- Sidebar: Genres -->
+                <!-- Sidebar with Genres -->
                 <div class="w-1/4 bg-white rounded-lg shadow p-4">
                     <h3 class="text-lg font-semibold mb-4">Genres</h3>
                     @if($genres->count())
@@ -52,7 +52,7 @@
                                         {{ $thread->title }}
                                     </a>
                                     <p class="text-sm text-gray-500">
-                                        by {{ $thread->user->name ?? 'Anonymous' }} 
+                                        by {{ $thread->user->name ?? 'Anonymous' }}
                                         @if ($thread->book_title)
                                             | "{{ $thread->book_title }}"
                                         @endif
