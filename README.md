@@ -39,6 +39,7 @@
  - MySQL or other DB is available
 
 If you don't have them installed, check the following links for instructions:
+ 
  **PHP and composer:**
  https://laravel.com/docs/12.x/installation
 
@@ -50,7 +51,7 @@ Follow these steps to set up and run the Laravel project locally:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/your-laravel-project.git
+git clone https://github.com/inaashammoush/book-forum.git
 cd your-laravel-project
 ```
 
