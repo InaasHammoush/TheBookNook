@@ -25,10 +25,10 @@
                 <!-- Header: Title -->
                 <img src="{{ asset('images/LogoForTitle.png') }}"
                      alt="The Book Nook Icon"
-                     style="height: 100px; width: auto; margin-top: -10px; margin-bottom: -60px; margin-left: 30px; display: inline-block;">
+                     style="height: 50px; width: auto; margin-top: -10px; margin-bottom: -10px; margin-left: 30px; display: inline-block;">
                 <img src="{{ asset('images/TextForTitle.png') }}"
                      alt="The Book Nook Text"
-                     style="height: 140px; width: auto; margin-top: -10px; margin-bottom: -90px; display: inline-block;">
+                     style="height: 50px; width: auto; margin-top: -10px; margin-bottom: -10px; display: inline-block;">
 
                 <!-- Searchbar -->
                 <div class="flex-1 mx-6 flex justify-center">
