@@ -52,7 +52,6 @@ Follow these steps to set up and run the Laravel project locally:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/InaasHammoush/TheBookNook.git
-cd your-laravel-project
 ```
 
 ### 2. Install PHP Dependencies
