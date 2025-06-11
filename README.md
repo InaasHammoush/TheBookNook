@@ -1,6 +1,6 @@
-# 📚 TheBooNook - Book Lovers' Forum
+# 📚 TheBookNook - Book Lovers' Forum
 
-**TheBooNook** is a Laravel-based community forum tailored for book enthusiasts. Users can register, participate in discussions, and interact with each other around their favorite books. It allows users to create threads, post comments, bookmark content, and interact with genres (categories). Admin users can manage all users, promote/demote user roles, and moderate content. Email verification is enforced, and the application includes a clean dashboard experience for both users and admins.
+**TheBookNook** is a Laravel-based community forum tailored for book enthusiasts. Users can register, participate in discussions, and interact with each other around their favorite books. It allows users to create threads, post comments, bookmark content, and interact with genres (categories). Admin users can manage all users, promote/demote user roles, and moderate content. Email verification is enforced, and the application includes a clean dashboard experience for both users and admins.
 
 ---
 
