@@ -36,7 +36,6 @@
  - PHP ≥ 8.1
  - Composer installed
  - Node.js + npm installed
- - MySQL or other DB is available
 
 If you don't have them installed, check the following links for instructions:
  
@@ -69,21 +68,17 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### 5. Run Migrations
-```bash
-php artisan migrate
-```
-### 6. Install Node Dependencies
+### 5. Install Node Dependencies
 ```bash
 npm install
 ```
 
-### 7. Build Frontend Assets
+### 6. Build Frontend Assets
 ```bash
 npm run dev
 ```
 
-### 8. Serve the Application
+### 7. Serve the Application
 ```bash
 php artisan serve
 ```
